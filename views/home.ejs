@@ -1,0 +1,92 @@
+
+<html>
+
+    <head>
+        <title>
+            
+            <%= title %>
+
+        </title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+         <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="./style.css"
+    </head>
+ 
+    <body>
+<section class="container">
+        <h1 align="center">TODO APP</h1>
+
+            <!-- form to create task -->
+        <form action="/create-task" method="POST">
+
+            <table class="table">
+                <thead>
+                  <tr class="table-active">
+                    <th >Add Task</th>
+                    <th >category</th>
+                    <th >date</th>
+                    <th ></th>
+                  </tr>
+                </thead>
+            
+            
+                <tbody>
+                    <tr>
+                      <td> <input type="text" name="description"placeholder="Enter your task" required></input></th>
+                      <td >  <select name="category" required>
+
+                        <option>PERSONAL</option>
+                        <option>WORK</option>
+                        <option>OTHER</option>
+
+                    </select></th>
+                      <td > <input type="date" name="date" required></th>
+                      <td ><input type="submit"  class="btn btn-success"id="add" style="height: 5vh; width: 8vw; font-size: 1.5rem;" value="ADD TASK"></th>
+                    </tr>
+                </tbody>
+            
+            </table>
+                  
+  </form>
+    </section>
+        <div>          
+                <h1 align="center" style="margin-top: 5vh; color: azure;">TASKS LIST</h1>
+
+                <form action="/delete-task" method="GET">
+                    <table class="table" style=" margin-top: 5vh; ;">
+                        <thead>
+                            <tr id="mainrow" >
+                              <th  >Select</th>
+                              <th style="padding-left: 12vw;">Task</th>
+                              <th style="padding-left: 13vw;">Category</th>
+                            <th style="padding-left: 14vw;">Due date</th>
+                            </tr>
+                          </thead>
+                        <% for(let i of task) { %>
+                            
+<tr id="list"">
+                               <td> <input type="checkbox" name="<%= i._id %>" ></td>
+                               <td style="padding-left: 11vw;"> <p id="task-description" ><%= i.description %></td>
+                                <td style="padding-left: 13vw;"><p id="task-category" ></p>: <%= i.category %></td>
+                                <td style="padding-left: 13vw;"><p id="due-date">: <%= i.date %></p></td>
+</tr>
+                    
+                        <% } %>
+                            
+                
+
+                           
+</table>
+<div  align = "center" ><input type="submit" class="btn btn-danger" style="height: 7vh; width: 12vw; font-size: 1.5rem;" value="DELETE TASK">
+                </div></form>
+
+        
+            </div>
+              
+    </body>
+    
+</html>
