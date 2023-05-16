@@ -1,13 +1,17 @@
+const mongoose = require("mongoose");
+//connecting to the database
+mongoose.connect(
+  "mongodb+srv://soumitra:56789123%40Sg@cluster0.qtleogu.mongodb.net/todo_db?retryWrites=true&w=majority"
+);
 
-const mongoose = require('mongoose');
+// acquiring the connection to check if it is succesfull
+const db = mongoose.connection;
 
-main().catch(err => console.log(err));
+//checking the error
+db.on("error", console.error.bind(console, "error in connecting the database"));
 
-async function main() {
-    console.log('success')
-  await mongoose.connect('mongodb://127.0.0.1:27017/todo_db');
-  
-
-}
-
+//up and running then print the statement
+db.once("open", function () {
+  console.log("succesfully connected to database");
+});
 
